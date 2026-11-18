@@ -1,2 +1,3 @@
-# koto-cabin
-Architectural retreat showcase with custom SVG cabin elevations, landscape filters, and stay pricing calculator
+# Koto Cabin — Architectural Retreat Booking Showcase
+
+Warm editorial hospitality showcase featuring custom SVG architectural cabin elevations, landscape filtering, dynamic nightly + add-on pricing, and `localStorage`-persisted reservation itineraries.
