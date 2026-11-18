@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koto Cabin — Architectural Forest &amp; Coastal Retreats</title>
+  <meta name="description" content="Koto Cabin is an architectural cabin collection offering curated forest, alpine, and lakeside retreats with live stay pricing and instant itinerary reservations." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e3a2d'/%3E%3Cpolygon points='16,7 7,23 25,23' fill='%23f4f0e8'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <script defer src="js/data.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#top" class="brand">
+        <span class="brand__serif">Koto</span>
+        <span class="eyebrow">Cabins</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#cabins">Cabins</a>
+        <a href="#booking">Reserve Stay</a>
+      </nav>
+
+      <button id="trips-btn" type="button" class="btn btn--secondary btn--sm">
+        My Trips <span id="trips-count" class="mono">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="top" class="hero">
+      <div class="container hero__grid">
+        <div>
+          <span class="eyebrow">Architectural Retreats // Quiet Landscapes</span>
+          <h1 class="hero__title">
+            Timber, glass, and <em>unhurried</em> stillness.
+          </h1>
+          <p class="hero__lead">
+            Four architect-designed cabins nestled across cedar forests, alpine ridges, and glacial lakes. Book directly with transparent nightly rates and private sauna preparation.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <a href="#cabins" class="btn btn--primary">Browse Cabins</a>
+            <a href="#booking" class="btn btn--secondary">Calculate Stay</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div id="hero-cabin-art" class="hero-card__art"></div>
+          <div class="hero-card__meta">
+            <div>
+              <strong>Kiso Cedar Pavilion</strong>
+              <span style="display: block; font-size: 0.8rem; color: var(--ink-muted);">Nagano Cedar Reserve</span>
+            </div>
+            <span class="mono">$310 / night</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cabins" class="section">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">01 // Curated Collection</span>
+            <h2 class="section__title">Choose Your Landscape</h2>
+          </div>
+
+          <div class="filter-row" role="group" aria-label="Filter cabins by environment">
+            <button type="button" class="pill is-active" data-cabin-filter="all" aria-pressed="true">All (4)</button>
+            <button type="button" class="pill" data-cabin-filter="forest" aria-pressed="false">Forest</button>
+            <button type="button" class="pill" data-cabin-filter="alpine" aria-pressed="false">Alpine</button>
+            <button type="button" class="pill" data-cabin-filter="lakeside" aria-pressed="false">Lakeside</button>
+            <button type="button" class="pill" data-cabin-filter="sauna" aria-pressed="false">Private Sauna</button>
+          </div>
+        </div>
+
+        <div id="cabin-grid" class="cabin-grid"></div>
+      </div>
+    </section>
+
+    <section id="booking" class="section">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">02 // Direct Reservation</span>
+            <h2 class="section__title">Plan &amp; Price Your Stay</h2>
+          </div>
+        </div>
+
+        <div class="booking-grid">
+          <form id="booking-form" class="panel form-grid" novalidate>
+            <div class="field">
+              <label for="book-cabin">Select Cabin</label>
+              <select id="book-cabin"></select>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="book-checkin">Check-in</label>
+                <input id="book-checkin" type="date" required />
+              </div>
+              <div class="field">
+                <label for="book-checkout">Check-out</label>
+                <input id="book-checkout" type="date" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="book-guests">Guests</label>
+              <select id="book-guests">
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+              </select>
+            </div>
+
+            <div>
+              <span style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--ink-secondary); margin-bottom: 0.45rem;">Optional Provisions</span>
+              <div id="addon-list" class="addon-list"></div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="book-name">Guest Name</label>
+                <input id="book-name" type="text" placeholder="Elena Sato" required />
+              </div>
+              <div class="field">
+                <label for="book-email">Confirmation Email</label>
+                <input id="book-email" type="email" placeholder="elena@studio.com" required />
+              </div>
+            </div>
+
+            <p id="book-error" class="error-msg" aria-live="polite"></p>
+            <button type="submit" class="btn btn--primary btn--full">Confirm Reservation</button>
+            <div id="confirm-box" class="confirm-box" hidden></div>
+          </form>
+
+          <aside class="panel" aria-label="Live pricing breakdown">
+            <span class="eyebrow">Stay Breakdown</span>
+            <h3 id="sum-cabin-title" style="margin: 0.35rem 0 0; font-family: var(--font-serif); font-size: 1.55rem;">Kiso Cedar Pavilion</h3>
+
+            <div class="summary-rows">
+              <div class="summary-row">
+                <span id="sum-nights-line">$310 × 3 nights</span>
+                <span id="sum-nights-val" class="mono">$930</span>
+              </div>
+              <div class="summary-row">
+                <span>Provisions &amp; Add-ons</span>
+                <span id="sum-addons-val" class="mono">$0</span>
+              </div>
+              <div class="summary-row">
+                <span>Linen &amp; Cleaning Prep</span>
+                <span class="mono">$65</span>
+              </div>
+              <div class="summary-row">
+                <span>Hospitality Tax (8%)</span>
+                <span id="sum-tax-val" class="mono">$80</span>
+              </div>
+            </div>
+
+            <div class="summary-total">
+              <span>Estimated Total</span>
+              <span id="sum-total-val" class="mono">$1,075</span>
+            </div>
+            <p style="margin: 0.85rem 0 0; font-size: 0.82rem; color: var(--ink-muted);">
+              Free cancellation up to 7 days prior to check-in. Reservations persist locally in your browser.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;">
+      <span>&copy; 2026 Koto Architectural Cabins Concept · Portfolio Hospitality Showcase</span>
+      <span class="mono">Editorial Serif + Interactive Booking Engine</span>
+    </div>
+  </footer>
+
+  <!-- My Trips Drawer -->
+  <div id="trips-drawer" class="drawer-backdrop" role="dialog" aria-modal="true" aria-labelledby="trips-title" aria-hidden="true">
+    <div class="drawer">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 id="trips-title" style="margin: 0; font-family: var(--font-serif); font-size: 1.65rem;">Saved Itineraries</h2>
+        <button id="close-trips-btn" type="button" class="btn btn--secondary btn--sm">Close</button>
+      </div>
+      <div id="trips-list" style="display: flex; flex-direction: column; gap: 0.75rem;"></div>
+    </div>
+  </div>
+</body>
+</html>
